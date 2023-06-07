@@ -184,7 +184,7 @@ void EnMnk_TiedUpMonkey_SetNewAnim(EnMnk* this, s32 animIndex) {
     }
 }
 
-void EnMnk_HangingMonkey_ChangeAnims(EnMnk* this, s32 animIndex, u8 mode, f32 transitionRate) {
+void EnMnk_HangingMonkey_ChangeAnim(EnMnk* this, s32 animIndex, u8 mode, f32 transitionRate) {
     Animation_Change(&this->skelAnime, sHangingMonkeyAnimations[animIndex], 1.0f, 0.0f,
                      Animation_GetLastFrame(&sHangingMonkeyAnimations[animIndex]->common), mode, transitionRate);
     Animation_Change(&this->propSkelAnime, sHangingMonkeyRopeAnimations[animIndex], 1.0f, 0.0f,
@@ -193,7 +193,7 @@ void EnMnk_HangingMonkey_ChangeAnims(EnMnk* this, s32 animIndex, u8 mode, f32 tr
 }
 
 void EnMnk_HangingMonkey_SetAnim(EnMnk* this, s32 animIndex) {
-    EnMnk_HangingMonkey_ChangeAnims(this, animIndex, ANIMMODE_LOOP, -5.0f);
+    EnMnk_HangingMonkey_ChangeAnim(this, animIndex, ANIMMODE_LOOP, -5.0f);
 }
 
 void EnMnk_Monkey_ChangeAnim(EnMnk* this, s32 animIndex, u8 mode, f32 morphFrames) {
@@ -276,7 +276,7 @@ void EnMnk_HangingMonkey_Init(EnMnk* this, PlayState* play) {
     this->picto.actor.textId = 0x8E8;
     SkelAnime_InitFlex(play, &this->propSkelAnime, &gHangingMonkeyRopeSkeleton, &gHangingMonkeyStruggleAnim,
                        this->propJointTable, this->propMorphTable, 4);
-    EnMnk_HangingMonkey_ChangeAnims(this, HANGINGMONKEY_ANIM_STRUGGLE, ANIMMODE_LOOP, 0.0f);
+    EnMnk_HangingMonkey_ChangeAnim(this, HANGINGMONKEY_ANIM_STRUGGLE, ANIMMODE_LOOP, 0.0f);
     this->unk_3E0 = 5;
     this->picto.actor.draw = EnMnk_HangingMonkey_Draw;
     this->picto.actor.shape.shadowDraw = NULL;
@@ -1639,7 +1639,7 @@ void EnMnk_HangingMonkey_PauseDuringDunk2(EnMnk* this, PlayState* play) {
     } else {
         this->unk_3C8 = 60;
         this->actionFunc = EnMnk_HangingMonkey_RaiseFromDunk2;
-        EnMnk_HangingMonkey_ChangeAnims(this, HANGINGMONKEY_ANIM_RISE, ANIMMODE_ONCE, -5.0f);
+        EnMnk_HangingMonkey_ChangeAnim(this, HANGINGMONKEY_ANIM_RISE, ANIMMODE_ONCE, -5.0f);
         this->unk_3E0 = 3;
     }
 }
@@ -1751,7 +1751,7 @@ void EnMnk_HangingMonkey_PauseDuringDunk(EnMnk* this, PlayState* play) {
     } else {
         this->unk_3C8 = 60;
         this->actionFunc = EnMnk_HangingMonkey_RaiseFromDunk;
-        EnMnk_HangingMonkey_ChangeAnims(this, HANGINGMONKEY_ANIM_RISE, ANIMMODE_ONCE, -5.0f);
+        EnMnk_HangingMonkey_ChangeAnim(this, HANGINGMONKEY_ANIM_RISE, ANIMMODE_ONCE, -5.0f);
         this->unk_3E0 = 3;
     }
 }

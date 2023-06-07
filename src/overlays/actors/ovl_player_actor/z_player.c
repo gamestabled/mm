@@ -2848,14 +2848,14 @@ void func_8082F43C(PlayState* play, Player* this, PlayerFuncAC4 arg2) {
 #define GET_PLAYER_ANIM(group, type) ((PlayerAnimationHeader**)D_8085BE84)[group * PLAYER_ANIMTYPE_MAX + type]
 
 void func_8082F470(PlayState* play, Player* this, PlayerItemAction itemAction) {
-    PlayerAnimationHeader* animIndex = this->skelAnime.animation;
+    PlayerAnimationHeader* curAnim = this->skelAnime.animation;
     PlayerAnimationHeader*(*iter)[PLAYER_ANIMTYPE_MAX] = (void*)&D_8085BE84[0][this->modelAnimType];
     s32 i;
 
     this->stateFlags1 &= ~(PLAYER_STATE1_8 | PLAYER_STATE1_1000000);
 
     for (i = 0; i < PLAYER_ANIMGROUP_MAX; i++) {
-        if (animIndex == **iter) {
+        if (curAnim == **iter) {
             break;
         }
         iter++;
