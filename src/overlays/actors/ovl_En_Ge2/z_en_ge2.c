@@ -228,14 +228,14 @@ void EnGe2_GetNextPath(EnGe2* this, PlayState* play) {
     Path* curPath;
     Path* nextPath;
     Vec3s* points;
-    u8 nextPathIndex;
+    u8 pathIndex;
 
     this->curPointIndex = 0;
 
     if (GERUDO_PURPLE_GET_PATH_INDEX(&this->picto.actor) != GERUDO_PRUPLE_PATH_INDEX_NONE) {
         curPath = &play->setupPathList[GERUDO_PURPLE_GET_PATH_INDEX(&this->picto.actor)];
-        nextPathIndex = curPath->additionalPathIndex;
-        nextPath = &play->setupPathList[nextPathIndex];
+        pathIndex = curPath->additionalPathIndex;
+        nextPath = &play->setupPathList[pathIndex];
         this->path = nextPath;
         points = Lib_SegmentedToVirtual(nextPath->points);
         this->picto.actor.world.pos.x = points[0].x;
